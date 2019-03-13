@@ -1,0 +1,33 @@
+//
+//  DiaryInstant.pch
+//  DiaryInstant
+//
+//  Created by George on 2019/3/7.
+//  Copyright © 2019 George. All rights reserved.
+//
+
+#ifndef DiaryInstant_pch
+#define DiaryInstant_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+//网络请求
+#import "HttpManager.h"
+
+//三方库
+#import "CXMProgressView.h"
+
+//基础
+#import "AppDelegate.h"
+
+//常规类
+#import "SystemDefine.h"
+
+//工具类
+#import "NSDictionary+SetNullWithStr.h"
+#endif
+#endif /* DiaryInstant_pch */
