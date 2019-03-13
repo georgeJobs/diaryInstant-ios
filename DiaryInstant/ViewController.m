@@ -115,25 +115,30 @@
         UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];// 编辑后的图片
         //  UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];// 未编辑图片
 
-        NSData *imgData = UIImageJPEGRepresentation(image, 1.0f);
+        NSData *imgData = UIImageJPEGRepresentation(image, 0.01f);
         NSString *encodedImageStr = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
         //NSString *encodedImageStr = [self image2DataURL:image];
 
         NSDictionary *dic=@{@"content":[encodedImageStr stringByReplacingOccurrencesOfString:@"\r\n" withString:@""],@"type":@"1"};
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        //一但用了这个返回的那个responseObject就是NSData，如果不用就是简单的
-        //manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
 
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *token = [defaults objectForKey:@"token"];
 
         [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html",@"image/jpeg",@"text/plain", nil];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",
+                                                                                  @"text/html",
+                                                                                  @"text/json",
+                                                                                  @"text/plain",
+                                                                                  @"text/javascript",
+                                                                                  @"text/xml",
+                                                                                  @"image/*"]];
 
         [manager POST:@"http://di.leizhenxd.com/api/resource/add" parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-             NSLog(responseObject);
-             NSDictionary *dict = (NSDictionary *)responseObject;
+            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+            NSLog(@"%@", jsonDict);
 
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              NSLog(@"请求失败--%@",error);
