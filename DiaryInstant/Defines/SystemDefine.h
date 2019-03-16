@@ -9,6 +9,23 @@
 #ifndef SystemDefine_h
 #define SystemDefine_h
 
+#pragma mark - 屏幕相关宏
+#define     SCREEN_WIDTH    [[UIScreen mainScreen] bounds].size.width
+#define     SCREEN_HEIGHT   ([[UIScreen mainScreen] bounds].size.height)
+#define     KScreenWidth    SCREEN_WIDTH
+#define     KScreenHeight   SCREEN_HEIGHT
+#define     IPhoneX_Height  812.0f
+
+#define isIPhoneX [UIScreen mainScreen].bounds.size.width == 375.0f && [UIScreen mainScreen].bounds.size.height == 812.0f
+
+#define TabBarHeight self.tabBarController.tabBar.frame.size.height
+// 实际宽度
+#define kActualWidth(width)      width*SCREEN_WIDTH/375
+#define kActualHeight(height)    height*SCREEN_HEIGHT/667
+
+#define StatusBarHeight [UIApplication sharedApplication].statusBarFrame.size.height
+
+#define      NAV_HEIGHT        ([UIApplication sharedApplication].statusBarFrame.size.height+self.navigationController.navigationBar.frame.size.height)
 
 #pragma mark - 颜色
 //常用函数

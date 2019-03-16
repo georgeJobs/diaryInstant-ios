@@ -1,23 +1,22 @@
 //
-//  MoreViewController.m
+//  ForgotViewController.m
 //  DiaryInstant
 //
-//  Created by George on 2019/3/12.
+//  Created by George on 2019/3/16.
 //  Copyright © 2019 George. All rights reserved.
 //
 
-#import "MoreViewController.h"
+#import "ForgotViewController.h"
 
-@interface MoreViewController ()
+@interface ForgotViewController ()
 
 @end
 
-@implementation MoreViewController
+@implementation ForgotViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = UIColor.whiteColor;
 }
 
 /*

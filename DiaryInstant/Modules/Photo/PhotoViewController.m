@@ -7,8 +7,18 @@
 //
 
 #import "PhotoViewController.h"
+#import "PicShowCollectionViewCell.h"
+#import "UploadViewController.h"
+#import "MessagePhotoController.h"
+#import "ShareViewController.h"
 
-@interface PhotoViewController ()
+@interface PhotoViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>{
+    UICollectionView *_collectionView;
+    NSMutableArray *_mulArr;
+    NSInteger _selectedRow;
+    UIButton *addPic;
+}
+@property(nonatomic,strong) UITableView *table;
 
 @end
 
@@ -17,17 +27,195 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
+    
     // Do any additional setup after loading the view.
+    _mulArr = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    UILabel *title = [[UILabel alloc]init];
+    title.text = @"PHOTO";
+    title.font = [UIFont systemFontOfSize:30];
+    [self.view addSubview:title];
+    [title mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.top.mas_equalTo(self.view.mas_top).offset(50);
+    }];
+    
+    UIButton *message = [[UIButton alloc]init];
+    [message setTitle:@"Your have 5 messages" forState:UIControlStateNormal];
+    message.titleLabel.font = [UIFont systemFontOfSize:12];
+    [message sizeToFit];
+    [message setTitleColor:UIColorFromRGB(0x4a72e2) forState:UIControlStateNormal];
+    [message addTarget:self action:@selector(messageClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:message];
+    [message mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).offset(5);
+        make.top.mas_equalTo(title.mas_bottom).offset(5);
+        //make.height.mas_equalTo(10);
+        //make.width.mas_equalTo(50);
+    }];
+    
+    UIButton *share = [[UIButton alloc]init];
+    [share setTitle:@"share" forState:UIControlStateNormal];
+    share.titleLabel.font = [UIFont systemFontOfSize:12];
+    [share sizeToFit];
+    [share setTitleColor:UIColorFromRGB(0x4a72e2) forState:UIControlStateNormal];
+    [share addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:share];
+    [share mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view.mas_right).offset(-5);
+        make.top.mas_equalTo(title.mas_bottom).offset(5);
+    }];
+    
+    addPic = [[UIButton alloc]initWithFrame:CGRectMake(0.0, 0.0,(SCREEN_WIDTH - 5)/5 , (SCREEN_WIDTH - 5)/5)];
+    [addPic setImage:[UIImage imageNamed:@"add-pic"] forState:UIControlStateNormal];
+    [addPic addTarget:self action:@selector(uploadClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addPic];
+    
+    
+    [self makeCollectionView];
+    [self makePicRequest];
+}
+-(void) messageClick{
+    MessagePhotoController *view = [[MessagePhotoController alloc]init];
+    [self.navigationController pushViewController:view animated:YES];
+}
+-(void) shareClick{
+    ShareViewController *view = [[ShareViewController alloc]init];
+    [self.navigationController pushViewController:view animated:YES];
+}
+-(void) uploadClick{
+    UploadViewController *view =[[UploadViewController alloc]init];
+    [self.navigationController pushViewController:view animated:YES];
+}
+-(void)makeCollectionView{
+    
+    CGFloat itemWidth =(SCREEN_WIDTH - 5)/5;
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.minimumInteritemSpacing = 3.5f;
+    flowLayout.minimumLineSpacing = 10.5f;
+    [flowLayout setItemSize:CGSizeMake(itemWidth,itemWidth)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, NAV_HEIGHT+90, SCREEN_WIDTH-20, SCREEN_HEIGHT-NAV_HEIGHT-90) collectionViewLayout:flowLayout];
+    _collectionView.delegate =self;
+    _collectionView.dataSource =self;
+    _collectionView.bounces =YES;
+    _collectionView.backgroundColor =UIColor.whiteColor;
+    [self.view addSubview:_collectionView];
+    
+    [_collectionView registerClass:[PicShowCollectionViewCell class] forCellWithReuseIdentifier:@"PicShowCellIdentifier"];
+    
+    __weak typeof(self) weakSelf = self;
+//    __weak UILabel *weakLabel = tisLabel;
+
+    _collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+
+        [weakSelf makePicRequest];
+//        weakLabel.text = @"以下为近1小时上传图像";
+    }];
+
+    // 上拉继续加载
+    _collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        //[weakSelf makeMorePicRequest];
+    }];
+
+    _collectionView.mj_footer.hidden =YES;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void) makePicRequest{
+    
+    NSDictionary *dic=@{@"type":@"1"};
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *token = [defaults objectForKey:@"token"];
+    
+    
+    [_mulArr removeAllObjects];
+    [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",
+                                                                              @"text/html",
+                                                                              @"text/json",
+                                                                              @"text/plain",
+                                                                              @"text/javascript",
+                                                                              @"text/xml",
+                                                                              @"image/*"]];
+    
+    [manager POST:@"http://di.leizhenxd.com/api/resource/query" parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"%@", jsonDict);
+        
+        NSMutableArray *itemArr =[NSMutableArray arrayWithArray:[jsonDict objectForKey:@"data"]];
+        
+        //[itemArr addObject:addPic];
+        [self->_mulArr addObjectsFromArray:[PicShowModel mj_objectArrayWithKeyValuesArray:itemArr]];
+        
+        [_collectionView reloadData];
+        [_collectionView.mj_header endRefreshing];
+        
+        if(itemArr.count<30){
+            _collectionView.mj_footer.hidden=YES;
+        }else{
+            _collectionView.mj_footer.hidden=NO;
+        }
+        //_tablePlaceHolder.hidden =YES;
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"请求失败--%@",error);
+    }];
 }
-*/
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if(collectionView ==_collectionView){
+        
+        return _mulArr.count;
+    }
+    
+    return 0;
+}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(1.5f, 0, 0, 0);
+}
+- (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString* cellIdentifier = @"PicShowCellIdentifier";
+    PicShowCollectionViewCell* picShowCell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    picShowCell.delegate =self;
+    picShowCell.indexPathRow = indexPath.row;
+//    if(_selectedRow==indexPath.row){
+//
+//        picShowCell.showImage = [UIImage imageNamed:@"Intelligent_selected"];
+//    }else{
+//
+//        picShowCell.showImage = [UIImage imageNamed:@"Intelligent_noselected"];
+//    }
+    
+    PicShowModel *picModel =(PicShowModel*)[_mulArr objectAtIndex:indexPath.row];
+    [picShowCell loadInterfaceWithModel:picModel];
+    return picShowCell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+//    NSMutableArray *imageArr = [NSMutableArray arrayWithCapacity:0];
+    
+//    for (NSInteger i=0; i<_mulArr.count; i++) {
+//        PicShowModel *model = [_mulArr objectAtIndex:i];
+//        [imageArr addObject:[NSString stringWithFormat:@"%@",model.content]];
+//    }
+    
+//    UploadViewController * view = [[UploadViewController alloc]init];
+//    [self.navigationController pushViewController:view animated:YES];
+
+//    LBPhotosBrowserViewController *photosBrowserVC = [[LBPhotosBrowserViewController alloc] init];
+//    photosBrowserVC.isPageScrolling = YES;
+//    photosBrowserVC.currentIndex = indexPath.row;
+//    photosBrowserVC.isURLImage = YES;
+//    photosBrowserVC.imgArr = [NSMutableArray arrayWithArray:imageArr];
+//    [self presentViewController:photosBrowserVC animated:YES completion:nil];
+    
+}
 
 @end

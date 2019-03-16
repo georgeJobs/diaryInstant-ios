@@ -1,23 +1,22 @@
 //
-//  MoreViewController.m
+//  CompleteController.m
 //  DiaryInstant
 //
-//  Created by George on 2019/3/12.
+//  Created by George on 2019/3/16.
 //  Copyright © 2019 George. All rights reserved.
 //
 
-#import "MoreViewController.h"
+#import "CompleteController.h"
 
-@interface MoreViewController ()
+@interface CompleteController ()
 
 @end
 
-@implementation MoreViewController
+@implementation CompleteController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = UIColor.whiteColor;
 }
 
 /*

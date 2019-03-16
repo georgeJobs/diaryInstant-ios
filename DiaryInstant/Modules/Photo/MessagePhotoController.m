@@ -1,23 +1,22 @@
 //
-//  MoreViewController.m
+//  MessagePhotoController.m
 //  DiaryInstant
 //
-//  Created by George on 2019/3/12.
+//  Created by George on 2019/3/14.
 //  Copyright © 2019 George. All rights reserved.
 //
 
-#import "MoreViewController.h"
+#import "MessagePhotoController.h"
 
-@interface MoreViewController ()
+@interface MessagePhotoController ()
 
 @end
 
-@implementation MoreViewController
+@implementation MessagePhotoController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = UIColor.whiteColor;
 }
 
 /*

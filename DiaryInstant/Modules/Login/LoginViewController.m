@@ -11,7 +11,9 @@
 #import <Masonry.h>
 #import "MainViewController.h"
 
-@interface LoginViewController ()
+@interface LoginViewController (){
+    MBProgressHUD *_hud;
+}
 @property (nonatomic,strong) UITextField *usrTextField;
 @property (nonatomic,strong) UITextField *pwdText;
 @end
@@ -26,6 +28,7 @@
     _usrTextField = [[UITextField alloc]init];
     _usrTextField.borderStyle = UITextBorderStyleBezel;
     _usrTextField.text=@"lilei";
+    [_usrTextField setPlaceholder:@"Username/Mobile Number"];
     
     [self.view addSubview:_usrTextField];
     [_usrTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -39,6 +42,7 @@
     _pwdText.borderStyle = UITextBorderStyleBezel;
     _pwdText.secureTextEntry = YES;
     _pwdText.text=@"123";
+    [_pwdText setPlaceholder:@"Password"];
     
     [self.view addSubview:_pwdText];
     [_pwdText mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -48,10 +52,20 @@
         make.top.mas_equalTo(self->_usrTextField.mas_bottom).offset(40);
     }];
     
+    UILabel *lable = [[UILabel alloc]init];
+    lable.text = @"DIARY INSTANT";
+    [lable sizeToFit];
+    lable.font = [UIFont systemFontOfSize:30];
+    [self.view addSubview:lable];
+    [lable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(150);
+        make.centerX.mas_equalTo(self.view);
+    }];
+    
     UIButton *button = [[UIButton alloc]init];
     button.backgroundColor=UIColorFromRGB(0x4a72e2);
     [button setTitle:@"LOGIN" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(forgetPassBtnClcik) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(loginClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     [button mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -60,16 +74,42 @@
         make.height.mas_equalTo(50);
     }];
     
-    UIButton *photoBtn = [[UIButton alloc]init];
-    photoBtn.backgroundColor=UIColorFromRGB(0x4a72e2);
-    [photoBtn setTitle:@"Photo" forState:UIControlStateNormal];
-    [photoBtn addTarget:self action:@selector(jump) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:photoBtn];
-    [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.top.mas_equalTo(button.mas_bottom).offset(40);
-        make.width.mas_equalTo(300);
-        make.height.mas_equalTo(50);
+//    UIButton *photoBtn = [[UIButton alloc]init];
+//    photoBtn.backgroundColor=UIColorFromRGB(0x4a72e2);
+//    [photoBtn setTitle:@"Photo" forState:UIControlStateNormal];
+//    [photoBtn addTarget:self action:@selector(jump) forControlEvents:UIControlEventTouchUpInside];
+//    //[self.view addSubview:photoBtn];
+//    [photoBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(self.view);
+//        make.top.mas_equalTo(button.mas_bottom).offset(40);
+//        make.width.mas_equalTo(300);
+//        make.height.mas_equalTo(50);
+//    }];
+    
+    UIButton *forgotBtn = [[UIButton alloc]init];
+    [forgotBtn setTitle:@"Forgot Password" forState:UIControlStateNormal];
+    forgotBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [forgotBtn sizeToFit];
+    [forgotBtn setTitleColor:UIColorFromRGB(0x4a72e2) forState:UIControlStateNormal];
+    [forgotBtn addTarget:self action:@selector(forgotClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:forgotBtn];
+    [forgotBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(button.mas_left);
+        make.top.mas_equalTo(button.mas_bottom).offset(15);
+        //make.height.mas_equalTo(10);
+        //make.width.mas_equalTo(50);
+    }];
+    
+    UIButton *registerBtn = [[UIButton alloc]init];
+    [registerBtn setTitle:@"Register" forState:UIControlStateNormal];
+    registerBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [registerBtn sizeToFit];
+    [registerBtn setTitleColor:UIColorFromRGB(0x4a72e2) forState:UIControlStateNormal];
+    [registerBtn addTarget:self action:@selector(registerClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:registerBtn];
+    [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(button.mas_right);
+        make.top.mas_equalTo(button.mas_bottom).offset(15);
     }];
 }
 
@@ -88,21 +128,31 @@
     [self.navigationController pushViewController:view animated:YES];
 }
 
--(void) forgetPassBtnClcik{
+-(void) loginClick{
+    _hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    _hud.mode = MBProgressHUDModeAnnularDeterminate;
+    _hud.label.text = @"Logging in...";
+    
     NSDictionary *dic=@{@"loginName":_usrTextField.text,@"password":_pwdText.text};
     [[HttpManager sharedInstance] postWithCmd:@"/api/user/login" parameters:dic success:^(NSURLSessionDataTask *operation, id responseObject) {
 
         NSLog(@"responseObject===%@",responseObject);
-        NSDictionary *imDic = [responseObject objectForKey:@"data"];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:imDic[@"token"] forKey:@"token"];
-        [defaults synchronize];
-        
-        MainViewController *deviceViewController = [[MainViewController alloc] init];
-        //deviceViewController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:deviceViewController animated:YES];
-
+//        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        if([[responseObject[@"responseCode"] stringValue] isEqualToString:@"0"]){
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSDictionary * imDic = [responseObject objectForKey:@"data"];
+            [defaults setObject:imDic[@"token"] forKey:@"token"];
+            [defaults synchronize];
+            MainViewController *deviceViewController = [[MainViewController alloc] init];
+            //deviceViewController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:deviceViewController animated:YES];
+        }
+        else{
+            [CXMProgressView showErrorText:responseObject[@"responseMsg"]];
+        }
+        _hud.hidden =YES;
     } dataWrong:^(NSInteger code, NSString *msg) {
+        _hud.hidden =YES;
         [CXMProgressView showErrorText:msg];
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         [CXMProgressView dismissLoading];
@@ -122,5 +172,13 @@
 //     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //         NSLog(@"请求失败--%@",error);
 //     }];
+}
+
+-(void) forgotClick{
+    
+}
+
+-(void) registerClick{
+    
 }
 @end
