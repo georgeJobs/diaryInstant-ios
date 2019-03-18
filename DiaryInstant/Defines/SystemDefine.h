@@ -16,6 +16,14 @@
 #define     KScreenHeight   SCREEN_HEIGHT
 #define     IPhoneX_Height  812.0f
 
+#define System_Version   [[UIDevice currentDevice] systemVersion].floatValue
+
+// 导航栏颜色
+#define NavigationBarBackgroundColor UIColorFromRGB(0x5677fc)
+
+// 背景颜色
+#define GeneralBackgroundColor UIColorFromRGB(0xf4f4f4)
+
 #define isIPhoneX [UIScreen mainScreen].bounds.size.width == 375.0f && [UIScreen mainScreen].bounds.size.height == 812.0f
 
 #define TabBarHeight self.tabBarController.tabBar.frame.size.height

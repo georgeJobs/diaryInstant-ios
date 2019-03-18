@@ -1,8 +1,8 @@
 //
-//  CompleteController.h
+//  AddFriendViewController.h
 //  DiaryInstant
 //
-//  Created by George on 2019/3/16.
+//  Created by George on 2019/3/18.
 //  Copyright © 2019 George. All rights reserved.
 //
 
@@ -10,9 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CompleteController : UIViewController
+@interface AddFriendViewController : UIViewController
 
-@property(nonatomic,strong) NSString *name;
 @end
 
 NS_ASSUME_NONNULL_END

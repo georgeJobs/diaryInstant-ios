@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FriendViewController : UIViewController
-
+@property(nonatomic,assign) BOOL isMainCall;
 @end
 
 NS_ASSUME_NONNULL_END

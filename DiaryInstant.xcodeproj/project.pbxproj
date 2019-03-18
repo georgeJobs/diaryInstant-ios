@@ -22,6 +22,9 @@
 		5E5CB97D223CD807001DFEE6 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB97C223CD807001DFEE6 /* RegisterViewController.m */; };
 		5E5CB980223CD907001DFEE6 /* CompleteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB97F223CD907001DFEE6 /* CompleteController.m */; };
 		5E5CB983223CD91F001DFEE6 /* ForgotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB982223CD91F001DFEE6 /* ForgotViewController.m */; };
+		5E5CB98B223D32D3001DFEE6 /* LBPhotosBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB988223D32D3001DFEE6 /* LBPhotosBrowserViewController.m */; };
+		5E5CB98C223D32D3001DFEE6 /* LBPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB989223D32D3001DFEE6 /* LBPhotoView.m */; };
+		5E5CB98F223F8A7C001DFEE6 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB98E223F8A7C001DFEE6 /* AddFriendViewController.m */; };
 		5ED18F80222ECB9700DEF433 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED18F7F222ECB9700DEF433 /* AppDelegate.m */; };
 		5ED18F83222ECB9700DEF433 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED18F82222ECB9700DEF433 /* ViewController.m */; };
 		5ED18F86222ECB9700DEF433 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ED18F84222ECB9700DEF433 /* Main.storyboard */; };
@@ -107,6 +110,13 @@
 		5E5CB97F223CD907001DFEE6 /* CompleteController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompleteController.m; sourceTree = "<group>"; };
 		5E5CB981223CD91F001DFEE6 /* ForgotViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgotViewController.h; sourceTree = "<group>"; };
 		5E5CB982223CD91F001DFEE6 /* ForgotViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ForgotViewController.m; sourceTree = "<group>"; };
+		5E5CB985223CF76D001DFEE6 /* NetWork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetWork.h; sourceTree = "<group>"; };
+		5E5CB987223D32D3001DFEE6 /* LBPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPhotoView.h; sourceTree = "<group>"; };
+		5E5CB988223D32D3001DFEE6 /* LBPhotosBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPhotosBrowserViewController.m; sourceTree = "<group>"; };
+		5E5CB989223D32D3001DFEE6 /* LBPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPhotoView.m; sourceTree = "<group>"; };
+		5E5CB98A223D32D3001DFEE6 /* LBPhotosBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPhotosBrowserViewController.h; sourceTree = "<group>"; };
+		5E5CB98D223F8A7C001DFEE6 /* AddFriendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
+		5E5CB98E223F8A7C001DFEE6 /* AddFriendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
 		5ED18F7B222ECB9700DEF433 /* DiaryInstant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryInstant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED18F7E222ECB9700DEF433 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5ED18F7F222ECB9700DEF433 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -233,6 +243,17 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		5E5CB986223D32D3001DFEE6 /* LBImageBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				5E5CB98A223D32D3001DFEE6 /* LBPhotosBrowserViewController.h */,
+				5E5CB988223D32D3001DFEE6 /* LBPhotosBrowserViewController.m */,
+				5E5CB987223D32D3001DFEE6 /* LBPhotoView.h */,
+				5E5CB989223D32D3001DFEE6 /* LBPhotoView.m */,
+			);
+			path = LBImageBrowser;
+			sourceTree = "<group>";
+		};
 		5ED18F72222ECB9700DEF433 = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +331,7 @@
 		5ED18FB4223155D500DEF433 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				5E5CB986223D32D3001DFEE6 /* LBImageBrowser */,
 				5ED190362231737A00DEF433 /* NSDictionary-NULL */,
 				5ED1902A2231722700DEF433 /* CXMProgressView */,
 				5ED190162231708C00DEF433 /* Http */,
@@ -370,6 +392,8 @@
 			children = (
 				5ED190432237F00E00DEF433 /* FriendViewController.h */,
 				5ED190442237F00E00DEF433 /* FriendViewController.m */,
+				5E5CB98D223F8A7C001DFEE6 /* AddFriendViewController.h */,
+				5E5CB98E223F8A7C001DFEE6 /* AddFriendViewController.m */,
 			);
 			path = Friend;
 			sourceTree = "<group>";
@@ -396,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				5ED18FD722316B6F00DEF433 /* SystemDefine.h */,
+				5E5CB985223CF76D001DFEE6 /* NetWork.h */,
 			);
 			path = Defines;
 			sourceTree = "<group>";
@@ -689,9 +714,11 @@
 				5ED190332231722700DEF433 /* CXMProgressView.m in Sources */,
 				5ED1901E2231708C00DEF433 /* NetworkDetector.m in Sources */,
 				5ED190392231737A00DEF433 /* NSDictionary+SetNullWithStr.m in Sources */,
+				5E5CB98C223D32D3001DFEE6 /* LBPhotoView.m in Sources */,
 				5E5CB980223CD907001DFEE6 /* CompleteController.m in Sources */,
 				5ED190422237EFFA00DEF433 /* NoteViewController.m in Sources */,
 				5E5CB983223CD91F001DFEE6 /* ForgotViewController.m in Sources */,
+				5E5CB98F223F8A7C001DFEE6 /* AddFriendViewController.m in Sources */,
 				5E5CB97D223CD807001DFEE6 /* RegisterViewController.m in Sources */,
 				5E3C2517223A1E00000835FC /* PicShowModel.m in Sources */,
 				5ED190232231708C00DEF433 /* UIImage+ThumbnailImage.m in Sources */,
@@ -705,6 +732,7 @@
 				5E3C251D223A6EDA000835FC /* MessagePhotoController.m in Sources */,
 				5E3C2514223A1DB5000835FC /* PicShowCollectionViewCell.m in Sources */,
 				5ED1903C2237EDD900DEF433 /* MainViewController.m in Sources */,
+				5E5CB98B223D32D3001DFEE6 /* LBPhotosBrowserViewController.m in Sources */,
 				5ED18F8E222ECB9800DEF433 /* main.m in Sources */,
 				5ED18F80222ECB9700DEF433 /* AppDelegate.m in Sources */,
 				5ED18FC32231578B00DEF433 /* LoginViewController.m in Sources */,

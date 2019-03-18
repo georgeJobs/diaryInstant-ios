@@ -11,12 +11,12 @@
 #import "UploadViewController.h"
 #import "MessagePhotoController.h"
 #import "ShareViewController.h"
+#import "LBPhotosBrowserViewController.h"
 
 @interface PhotoViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>{
     UICollectionView *_collectionView;
     NSMutableArray *_mulArr;
     NSInteger _selectedRow;
-    UIButton *addPic;
 }
 @property(nonatomic,strong) UITableView *table;
 
@@ -30,7 +30,7 @@
     
     // Do any additional setup after loading the view.
     _mulArr = [[NSMutableArray alloc] initWithCapacity:0];
-    
+    self.title = @"PHOTO";
     UILabel *title = [[UILabel alloc]init];
     title.text = @"PHOTO";
     title.font = [UIFont systemFontOfSize:30];
@@ -66,12 +66,6 @@
         make.top.mas_equalTo(title.mas_bottom).offset(5);
     }];
     
-    addPic = [[UIButton alloc]initWithFrame:CGRectMake(0.0, 0.0,(SCREEN_WIDTH - 5)/5 , (SCREEN_WIDTH - 5)/5)];
-    [addPic setImage:[UIImage imageNamed:@"add-pic"] forState:UIControlStateNormal];
-    [addPic addTarget:self action:@selector(uploadClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:addPic];
-    
-    
     [self makeCollectionView];
     [self makePicRequest];
 }
@@ -83,10 +77,6 @@
     ShareViewController *view = [[ShareViewController alloc]init];
     [self.navigationController pushViewController:view animated:YES];
 }
--(void) uploadClick{
-    UploadViewController *view =[[UploadViewController alloc]init];
-    [self.navigationController pushViewController:view animated:YES];
-}
 -(void)makeCollectionView{
     
     CGFloat itemWidth =(SCREEN_WIDTH - 5)/5;
@@ -96,7 +86,7 @@
     [flowLayout setItemSize:CGSizeMake(itemWidth,itemWidth)];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, NAV_HEIGHT+90, SCREEN_WIDTH-20, SCREEN_HEIGHT-NAV_HEIGHT-90) collectionViewLayout:flowLayout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, NAV_HEIGHT+100, SCREEN_WIDTH-20, SCREEN_HEIGHT-NAV_HEIGHT-100) collectionViewLayout:flowLayout];
     _collectionView.delegate =self;
     _collectionView.dataSource =self;
     _collectionView.bounces =YES;
@@ -148,8 +138,9 @@
         NSLog(@"%@", jsonDict);
         
         NSMutableArray *itemArr =[NSMutableArray arrayWithArray:[jsonDict objectForKey:@"data"]];
-        
-        //[itemArr addObject:addPic];
+        PicShowModel * addImg = [[PicShowModel alloc]init];
+        addImg.type=@"3";
+        [itemArr addObject:addImg];
         [self->_mulArr addObjectsFromArray:[PicShowModel mj_objectArrayWithKeyValuesArray:itemArr]];
         
         [_collectionView reloadData];
@@ -191,7 +182,7 @@
 //
 //        picShowCell.showImage = [UIImage imageNamed:@"Intelligent_noselected"];
 //    }
-    
+
     PicShowModel *picModel =(PicShowModel*)[_mulArr objectAtIndex:indexPath.row];
     [picShowCell loadInterfaceWithModel:picModel];
     return picShowCell;
@@ -199,23 +190,25 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-//    NSMutableArray *imageArr = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray *imageArr = [NSMutableArray arrayWithCapacity:0];
     
-//    for (NSInteger i=0; i<_mulArr.count; i++) {
-//        PicShowModel *model = [_mulArr objectAtIndex:i];
-//        [imageArr addObject:[NSString stringWithFormat:@"%@",model.content]];
-//    }
+    for (NSInteger i=0; i<_mulArr.count-1; i++) {
+        PicShowModel *model = [_mulArr objectAtIndex:i];
+        [imageArr addObject:[NSString stringWithFormat:@"%@",model.content]];
+    }
     
-//    UploadViewController * view = [[UploadViewController alloc]init];
-//    [self.navigationController pushViewController:view animated:YES];
+    if(indexPath.row == _mulArr.count-1){
+        UploadViewController *view = [[UploadViewController alloc]init];
+        [self.navigationController pushViewController:view animated:YES];
+    }else{
+        LBPhotosBrowserViewController *photosBrowserVC = [[LBPhotosBrowserViewController alloc] init];
+        photosBrowserVC.isPageScrolling = YES;
+        photosBrowserVC.currentIndex = indexPath.row;
+        photosBrowserVC.isURLImage = YES;
+        photosBrowserVC.imgArr = [NSMutableArray arrayWithArray:imageArr];
+        [self presentViewController:photosBrowserVC animated:YES completion:nil];
+    }
 
-//    LBPhotosBrowserViewController *photosBrowserVC = [[LBPhotosBrowserViewController alloc] init];
-//    photosBrowserVC.isPageScrolling = YES;
-//    photosBrowserVC.currentIndex = indexPath.row;
-//    photosBrowserVC.isURLImage = YES;
-//    photosBrowserVC.imgArr = [NSMutableArray arrayWithArray:imageArr];
-//    [self presentViewController:photosBrowserVC animated:YES completion:nil];
-    
 }
 
 @end

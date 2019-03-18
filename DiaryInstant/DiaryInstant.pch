@@ -31,6 +31,7 @@
 
 //常规类
 #import "SystemDefine.h"
+#import "NetWork.h"
 
 //工具类
 #import "NSDictionary+SetNullWithStr.h"

@@ -1,23 +1,27 @@
 //
-//  NoteViewController.m
+//  AddFriendViewController.m
 //  DiaryInstant
 //
-//  Created by George on 2019/3/12.
+//  Created by George on 2019/3/18.
 //  Copyright © 2019 George. All rights reserved.
 //
 
-#import "NoteViewController.h"
+#import "AddFriendViewController.h"
 
-@interface NoteViewController ()
+@interface AddFriendViewController ()
 
 @end
 
-@implementation NoteViewController
+@implementation AddFriendViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title=@"Add Friend";
     self.view.backgroundColor = UIColor.whiteColor;
+    
+    UILabel * label = [[UILabel alloc]init];
+    label.text = @"username";
 }
 
 /*

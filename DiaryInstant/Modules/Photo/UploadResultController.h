@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UploadResultController : UIViewController
 
+@property(nonatomic,strong) NSString * content;
+@property(nonatomic,strong) NSString *size;
+@property(nonatomic,strong) NSString *timpStamp;
 @end
 
 NS_ASSUME_NONNULL_END

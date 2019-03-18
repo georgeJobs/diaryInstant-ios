@@ -10,8 +10,10 @@
 #import "ViewController.h"
 #import <Masonry.h>
 #import "MainViewController.h"
+#import "RegisterViewController.h"
+#import "ForgotViewController.h"
 
-@interface LoginViewController (){
+@interface LoginViewController ()<UITextFieldDelegate>{
     MBProgressHUD *_hud;
 }
 @property (nonatomic,strong) UITextField *usrTextField;
@@ -42,6 +44,7 @@
     _pwdText.borderStyle = UITextBorderStyleBezel;
     _pwdText.secureTextEntry = YES;
     _pwdText.text=@"123";
+    _pwdText.delegate= self;
     [_pwdText setPlaceholder:@"Password"];
     
     [self.view addSubview:_pwdText];
@@ -111,6 +114,8 @@
         make.right.mas_equalTo(button.mas_right);
         make.top.mas_equalTo(button.mas_bottom).offset(15);
     }];
+    
+    [self.view endEditing:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -134,7 +139,7 @@
     _hud.label.text = @"Logging in...";
     
     NSDictionary *dic=@{@"loginName":_usrTextField.text,@"password":_pwdText.text};
-    [[HttpManager sharedInstance] postWithCmd:@"/api/user/login" parameters:dic success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[HttpManager sharedInstance] postWithCmd:cmd_login parameters:dic success:^(NSURLSessionDataTask *operation, id responseObject) {
 
         NSLog(@"responseObject===%@",responseObject);
 //        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
@@ -175,10 +180,64 @@
 }
 
 -(void) forgotClick{
-    
+    ForgotViewController *view = [[ForgotViewController alloc]init];
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 -(void) registerClick{
-    
+    RegisterViewController *view = [[RegisterViewController alloc]init];
+    [self.navigationController pushViewController:view animated:YES];
 }
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [_pwdText resignFirstResponder];
+    [_usrTextField resignFirstResponder];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    return [textField resignFirstResponder];
+}
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (textField ==_pwdText){
+        [self changeControllerViewHeightWithNum:4.2f];
+    }
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    [textField resignFirstResponder];
+    UIViewController *superController = [self getViewController];
+    [UIView animateWithDuration:0.3 animations:^{
+        superController.view.frame = CGRectMake(0,0,SCREEN_WIDTH, SCREEN_HEIGHT);
+    }];
+}
+
+-(void)changeControllerViewHeightWithNum:(float)num{
+    UIViewController *superController = [self getViewController];
+    if(SCREEN_HEIGHT==IPhoneX_Height){
+        num = num+1;
+    }
+    [UIView animateWithDuration:0.3 animations:^{
+        if(SCREEN_HEIGHT==IPhoneX_Height){
+            superController.view.frame = CGRectMake(0,-(IPhoneX_Height*42*num/SCREEN_HEIGHT),SCREEN_WIDTH, SCREEN_HEIGHT);
+        }else{
+            if(SCREEN_HEIGHT>667){
+                superController.view.frame = CGRectMake(0,-(667*50*num/SCREEN_HEIGHT),SCREEN_WIDTH, SCREEN_HEIGHT);
+            }else{
+                superController.view.frame = CGRectMake(0,-(667*42*num/SCREEN_HEIGHT),SCREEN_WIDTH, SCREEN_HEIGHT);
+            }
+        }
+    }];
+}
+
+-(UIViewController*)getViewController{
+    for (UIView* next = [self.view superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
+}
+
+
 @end

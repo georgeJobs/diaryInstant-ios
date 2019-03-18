@@ -7,10 +7,12 @@
 //
 
 #import "UploadViewController.h"
+#import "UploadResultController.h"
 
 @interface UploadViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     UIImage *_uploadImage;
+    MBProgressHUD *_hud;
 }
 @property(nonatomic, strong)UIImagePickerController *avaterPicker;
 @end
@@ -79,6 +81,10 @@
         [CXMProgressView showText:@"NO Picture select"];
         return;
     }
+    _hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    _hud.mode = MBProgressHUDModeAnnularDeterminate;
+    _hud.label.text = @"Upload...";
+    
     NSData *imgData = UIImageJPEGRepresentation(_uploadImage, 0.01f);
     NSString *encodedImageStr = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     
@@ -102,8 +108,19 @@
     [manager POST:@"http://di.leizhenxd.com/api/resource/add" parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"%@", jsonDict);
-        
+        _hud.hidden =YES;
+        if([[jsonDict[@"responseCode"] stringValue] isEqualToString:@"0"]){
+            NSDictionary * imDic = [jsonDict objectForKey:@"data"];
+            UploadResultController *view = [[UploadResultController alloc]init];
+            view.content = imDic[@"content"];
+            view.size = imDic[@"size"];
+            view.timpStamp=imDic[@"createTime"];
+            [self.navigationController pushViewController:view animated:YES];
+        }else{
+            [CXMProgressView showText:jsonDict[@"responseMsg"]];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        _hud.hidden =YES;
         NSLog(@"请求失败--%@",error);
     }];
 }

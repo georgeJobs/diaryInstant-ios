@@ -37,7 +37,7 @@
     [_selectedBtn setImage:[UIImage imageNamed:@"Intelligent_noselected"] forState:UIControlStateNormal];
     _selectedBtn.frame = CGRectMake(CGRectGetWidth(self.bounds)-40, 10, 30, 30);
     //[_selectedBtn addTarget:self action:@selector(selectedBtnClcik:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_selectedBtn];
+    //[self addSubview:_selectedBtn];
     
     timeLabel = [UILabel new];
     timeLabel.text = @"0000-00-00 00:00:00";
@@ -67,7 +67,8 @@
     if([picModel.type isEqual:@"1"]){
         [_imageView sd_setImageWithURL:[NSURL URLWithString:picModel.content] placeholderImage:[UIImage imageNamed:@"defaultPic"]];
     }else{
-        _imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"add-pic"]];
+//        _imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"add-pic"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:picModel.content] placeholderImage:[UIImage imageNamed:@"add-pic"]];
     }
     
     timeLabel.text = picModel.createTime;//[NSString getFormatterTimeWithTimeSp:picModel.createTime];
