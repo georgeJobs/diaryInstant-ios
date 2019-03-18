@@ -25,6 +25,12 @@
 		5E5CB98B223D32D3001DFEE6 /* LBPhotosBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB988223D32D3001DFEE6 /* LBPhotosBrowserViewController.m */; };
 		5E5CB98C223D32D3001DFEE6 /* LBPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB989223D32D3001DFEE6 /* LBPhotoView.m */; };
 		5E5CB98F223F8A7C001DFEE6 /* AddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB98E223F8A7C001DFEE6 /* AddFriendViewController.m */; };
+		5E5CB993224004D5001DFEE6 /* SystemMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB992224004D5001DFEE6 /* SystemMessageTableViewCell.m */; };
+		5E5CB9962240053B001DFEE6 /* HomeMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB9952240053B001DFEE6 /* HomeMessageModel.m */; };
+		5E5CB99922400715001DFEE6 /* Cell_delate@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5CB99722400715001DFEE6 /* Cell_delate@3x.png */; };
+		5E5CB99A22400715001DFEE6 /* Cell_delate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5CB99822400715001DFEE6 /* Cell_delate@2x.png */; };
+		5E5CB99D22400953001DFEE6 /* MyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB99C22400953001DFEE6 /* MyScrollView.m */; };
+		5E5CB9A0224009BF001DFEE6 /* TableViewPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB99F224009BF001DFEE6 /* TableViewPlaceholder.m */; };
 		5ED18F80222ECB9700DEF433 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED18F7F222ECB9700DEF433 /* AppDelegate.m */; };
 		5ED18F83222ECB9700DEF433 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED18F82222ECB9700DEF433 /* ViewController.m */; };
 		5ED18F86222ECB9700DEF433 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ED18F84222ECB9700DEF433 /* Main.storyboard */; };
@@ -117,6 +123,16 @@
 		5E5CB98A223D32D3001DFEE6 /* LBPhotosBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPhotosBrowserViewController.h; sourceTree = "<group>"; };
 		5E5CB98D223F8A7C001DFEE6 /* AddFriendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddFriendViewController.h; sourceTree = "<group>"; };
 		5E5CB98E223F8A7C001DFEE6 /* AddFriendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddFriendViewController.m; sourceTree = "<group>"; };
+		5E5CB991224004D5001DFEE6 /* SystemMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessageTableViewCell.h; sourceTree = "<group>"; };
+		5E5CB992224004D5001DFEE6 /* SystemMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageTableViewCell.m; sourceTree = "<group>"; };
+		5E5CB9942240053B001DFEE6 /* HomeMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMessageModel.h; sourceTree = "<group>"; };
+		5E5CB9952240053B001DFEE6 /* HomeMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMessageModel.m; sourceTree = "<group>"; };
+		5E5CB99722400715001DFEE6 /* Cell_delate@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cell_delate@3x.png"; sourceTree = "<group>"; };
+		5E5CB99822400715001DFEE6 /* Cell_delate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cell_delate@2x.png"; sourceTree = "<group>"; };
+		5E5CB99B22400953001DFEE6 /* MyScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScrollView.h; sourceTree = "<group>"; };
+		5E5CB99C22400953001DFEE6 /* MyScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScrollView.m; sourceTree = "<group>"; };
+		5E5CB99E224009BF001DFEE6 /* TableViewPlaceholder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewPlaceholder.h; sourceTree = "<group>"; };
+		5E5CB99F224009BF001DFEE6 /* TableViewPlaceholder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewPlaceholder.m; sourceTree = "<group>"; };
 		5ED18F7B222ECB9700DEF433 /* DiaryInstant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryInstant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED18F7E222ECB9700DEF433 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5ED18F7F222ECB9700DEF433 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -252,6 +268,21 @@
 				5E5CB989223D32D3001DFEE6 /* LBPhotoView.m */,
 			);
 			path = LBImageBrowser;
+			sourceTree = "<group>";
+		};
+		5E5CB99022400409001DFEE6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5E5CB9942240053B001DFEE6 /* HomeMessageModel.h */,
+				5E5CB9952240053B001DFEE6 /* HomeMessageModel.m */,
+				5E5CB991224004D5001DFEE6 /* SystemMessageTableViewCell.h */,
+				5E5CB992224004D5001DFEE6 /* SystemMessageTableViewCell.m */,
+				5E5CB99B22400953001DFEE6 /* MyScrollView.h */,
+				5E5CB99C22400953001DFEE6 /* MyScrollView.m */,
+				5E5CB99E224009BF001DFEE6 /* TableViewPlaceholder.h */,
+				5E5CB99F224009BF001DFEE6 /* TableViewPlaceholder.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		5ED18F72222ECB9700DEF433 = {
@@ -390,6 +421,7 @@
 		5ED18FB82231564400DEF433 /* Friend */ = {
 			isa = PBXGroup;
 			children = (
+				5E5CB99022400409001DFEE6 /* Cell */,
 				5ED190432237F00E00DEF433 /* FriendViewController.h */,
 				5ED190442237F00E00DEF433 /* FriendViewController.m */,
 				5E5CB98D223F8A7C001DFEE6 /* AddFriendViewController.h */,
@@ -493,6 +525,8 @@
 		5ED1904C2237F26000DEF433 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5E5CB99822400715001DFEE6 /* Cell_delate@2x.png */,
+				5E5CB99722400715001DFEE6 /* Cell_delate@3x.png */,
 				5E3C252D223CC54F000835FC /* cameraBtn.png */,
 				5E3C252E223CC550000835FC /* photoBtn.png */,
 				5E3C252B223C9397000835FC /* add-pic.png */,
@@ -618,6 +652,7 @@
 				5ED18F8B222ECB9800DEF433 /* LaunchScreen.storyboard in Resources */,
 				5ED190582237F78C00DEF433 /* photo.png in Resources */,
 				5ED190312231722700DEF433 /* progressView_success@3x.png in Resources */,
+				5E5CB99A22400715001DFEE6 /* Cell_delate@2x.png in Resources */,
 				5E3C2530223CC550000835FC /* photoBtn.png in Resources */,
 				5ED18F88222ECB9800DEF433 /* Assets.xcassets in Resources */,
 				5E3C252F223CC550000835FC /* cameraBtn.png in Resources */,
@@ -626,6 +661,7 @@
 				5ED190322231722700DEF433 /* progressView_success@2x.png in Resources */,
 				5ED190552237F78C00DEF433 /* more.png in Resources */,
 				5E3C252A223C8BAE000835FC /* defaultPic@3x.png in Resources */,
+				5E5CB99922400715001DFEE6 /* Cell_delate@3x.png in Resources */,
 				5ED190352231722700DEF433 /* progressView_error@3x.png in Resources */,
 				5ED190572237F78C00DEF433 /* friend.png in Resources */,
 				5E3C2529223C8BAE000835FC /* defaultPic@2x.png in Resources */,
@@ -709,6 +745,7 @@
 				5ED1904B2237F03800DEF433 /* MoreViewController.m in Sources */,
 				5ED190212231708C00DEF433 /* UIImage+Effects.m in Sources */,
 				5ED1901F2231708C00DEF433 /* UIImage+GPS.m in Sources */,
+				5E5CB9A0224009BF001DFEE6 /* TableViewPlaceholder.m in Sources */,
 				5ED190452237F00E00DEF433 /* FriendViewController.m in Sources */,
 				5ED190202231708C00DEF433 /* UIImage+FlatUI.m in Sources */,
 				5ED190332231722700DEF433 /* CXMProgressView.m in Sources */,
@@ -720,6 +757,7 @@
 				5E5CB983223CD91F001DFEE6 /* ForgotViewController.m in Sources */,
 				5E5CB98F223F8A7C001DFEE6 /* AddFriendViewController.m in Sources */,
 				5E5CB97D223CD807001DFEE6 /* RegisterViewController.m in Sources */,
+				5E5CB993224004D5001DFEE6 /* SystemMessageTableViewCell.m in Sources */,
 				5E3C2517223A1E00000835FC /* PicShowModel.m in Sources */,
 				5ED190232231708C00DEF433 /* UIImage+ThumbnailImage.m in Sources */,
 				5E3C251A223A54AB000835FC /* UploadViewController.m in Sources */,
@@ -737,7 +775,9 @@
 				5ED18F80222ECB9700DEF433 /* AppDelegate.m in Sources */,
 				5ED18FC32231578B00DEF433 /* LoginViewController.m in Sources */,
 				5E3C2526223A70E8000835FC /* ShareViewController.m in Sources */,
+				5E5CB9962240053B001DFEE6 /* HomeMessageModel.m in Sources */,
 				5ED190222231708C00DEF433 /* UIImage+PureColorImage.m in Sources */,
+				5E5CB99D22400953001DFEE6 /* MyScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

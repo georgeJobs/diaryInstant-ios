@@ -47,6 +47,8 @@
 
 // 服务器数据返回异常数据
 #define Server_Return_Exception_Data    @"数据异常,程序员正在努力修复中(｡ì _ í｡)"
+// 网络链接有问题
+#define Connection_Network_Fail         @"当前网络不佳,请稍后再试(╯﹏╰）"
 
 #pragma mark - 数据类型判断
 #define StrValid(f) (f!=nil && [f isKindOfClass:[NSString class]] && ![f isEqualToString:@""])

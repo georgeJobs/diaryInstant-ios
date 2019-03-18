@@ -15,8 +15,7 @@ static const NSInteger HeadViewHeight = 376/2;
     UITableView *_tableView;
     UIImageView *_headImageView;
     UIImageView *_headView;
-    NSMutableArray *textlist;
-    NSMutableArray *idList;
+    NSMutableArray *list;
     MBProgressHUD *_hud;
 }@end
 
@@ -80,7 +79,7 @@ static const NSInteger HeadViewHeight = 376/2;
     
     if(section==0){
         
-        return textlist.count;
+        return list.count;
     }
     else{
         return 3;

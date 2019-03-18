@@ -21,6 +21,8 @@
     // Override point for customization after application launch.
     
 //    ViewController *view = [[ViewController alloc] init ];
+    
+    self.window.backgroundColor = UIColor.whiteColor;
     LoginViewController *view = [[LoginViewController alloc] init];
     
     UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:view];
