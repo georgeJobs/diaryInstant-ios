@@ -67,7 +67,6 @@
     if([picModel.type isEqual:@"1"]){
         [_imageView sd_setImageWithURL:[NSURL URLWithString:picModel.content] placeholderImage:[UIImage imageNamed:@"defaultPic"]];
     }else{
-//        _imageView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"add-pic"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [_imageView sd_setImageWithURL:[NSURL URLWithString:picModel.content] placeholderImage:[UIImage imageNamed:@"add-pic"]];
     }
     

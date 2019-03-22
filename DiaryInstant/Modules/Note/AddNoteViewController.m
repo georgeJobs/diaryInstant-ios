@@ -1,67 +1,78 @@
 //
-//  AddFriendViewController.m
+//  AddNoteViewController.m
 //  DiaryInstant
 //
-//  Created by George on 2019/3/18.
+//  Created by George on 2019/3/20.
 //  Copyright © 2019 George. All rights reserved.
 //
 
-#import "AddFriendViewController.h"
+#import "AddNoteViewController.h"
+#import "AddResultViewController.h"
 
-@interface AddFriendViewController ()
-{
-    UITextField *usrName;
+@interface AddNoteViewController (){
+    UITextField *topic;
+    UITextView *content;
     MBProgressHUD *_hud;
 }
 @end
 
-@implementation AddFriendViewController
+@implementation AddNoteViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title=@"Add Friend";
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor =UIColor.whiteColor;
+    self.title = @"New Note";
     
-    usrName = [[UITextField alloc]init];
-    usrName.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    usrName.borderStyle = UITextBorderStyleBezel;
-    [self.view addSubview:usrName];
-    [usrName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.view).offset(60);
-        make.centerY.mas_equalTo(self.view);
+    topic = [[UITextField alloc]init];
+    topic.borderStyle = UITextBorderStyleBezel;
+    topic.keyboardType = UIKeyboardTypeNumberPad;
+    topic.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    topic.borderStyle = UITextBorderStyleBezel;
+    [topic setPlaceholder:@"Topic:"];
+    [self.view addSubview:topic];
+    [topic mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.mas_top).offset(130);
+        make.centerX.mas_equalTo(self.view);
         make.height.mas_equalTo(30);
-        make.width.mas_equalTo(200);
+        make.width.mas_equalTo(SCREEN_WIDTH-10);
     }];
     
-    UILabel *hourLbl = [[UILabel alloc]init];
-    hourLbl.text = @"Username";
-    [hourLbl sizeToFit];
-    hourLbl.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:hourLbl];
-    [hourLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(usrName.mas_left).offset(10);
-        make.centerY.mas_equalTo(self.view);
+    content = [[UITextView alloc]init];
+    content.layer.borderColor = [UIColor grayColor].CGColor;
+    content.layer.borderWidth = 1.0;
+    content.keyboardType = UIKeyboardTypeNumberPad;
+    content.autocapitalizationType = UITextAutocapitalizationTypeNone;
+//    [content setPlaceholder:@"Content:"];
+    [self.view addSubview:content];
+    [content mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(topic.mas_bottom).offset(10);
+        make.centerX.mas_equalTo(self.view);
+        make.height.mas_equalTo(300);
+        make.width.mas_equalTo(SCREEN_WIDTH-10);
     }];
     
     UIButton *button = [[UIButton alloc]init];
     button.backgroundColor=UIColorFromRGB(0x4a72e2);
-    [button setTitle:@"add friend" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
+    [button setTitle:@"UPLOAD" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(uploadClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     [button mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.centerY.mas_equalTo(self.view).offset(120);
+        make.top.mas_equalTo(content.mas_bottom).offset(40);
         make.width.mas_equalTo(300);
         make.height.mas_equalTo(50);
     }];
+    
+    [self.view endEditing:YES];
 }
 
--(void) addClick{
+-(void) uploadClick{
     _hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     _hud.mode = MBProgressHUDModeAnnularDeterminate;
-    _hud.label.text = @"ADDING...";
-    NSDictionary *dic=@{@"addFriendName":usrName.text};
+    _hud.label.text = @"Uploading...";
+    
+    NSDictionary *dic=@{@"content":content.text,@"topic":topic.text,@"type":@2};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -78,11 +89,17 @@
                                                                               @"text/xml",
                                                                               @"image/*"]];
     
-    [manager POST:@"http://di.leizhenxd.com/api/friend/add" parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:@"http://di.leizhenxd.com/api/resource/add" parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"%@", jsonDict);
         if([[jsonDict[@"responseCode"] stringValue] isEqualToString:@"0"]){
-            [self.navigationController popViewControllerAnimated:YES];
+            
+            NSDictionary * imDic = [jsonDict objectForKey:@"data"];
+            AddResultViewController *view = [[AddResultViewController alloc]init];
+            view.topic = imDic[@"topic"];
+            view.size = imDic[@"size"];
+            view.timpStamp=imDic[@"createTime"];
+            [self.navigationController pushViewController:view animated:YES];
         }else{
             [CXMProgressView showText:jsonDict[@"responseMsg"]];
         }
@@ -93,8 +110,8 @@
         _hud.hidden=YES;
         NSLog(@"请求失败--%@",error);
     }];
+    
 }
-
 /*
 #pragma mark - Navigation
 

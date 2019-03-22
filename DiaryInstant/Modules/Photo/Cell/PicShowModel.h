@@ -25,7 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic,copy)NSString *size;
 @property(nonatomic,copy)NSString *type;
-//@property(nonatomic,copy)NSString *conceptType;
+@property(nonatomic,copy)NSString *resourceId;
+
 
 @end
 

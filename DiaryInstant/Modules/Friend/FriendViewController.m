@@ -22,7 +22,7 @@ static CGFloat HeadViewHeight = 68;
 {
     UIView *_headView;
     MyScrollView *_mainScrollView;
-    UITableView *_msgTableView;// 消息列表
+    UITableView *_msgTableView;
     NSMutableArray *_msgArr;
     
     UILabel *_messagelabel;
@@ -31,6 +31,8 @@ static CGFloat HeadViewHeight = 68;
     CGRect _rightRect;
     
     TableViewPlaceholder *_msgPlaceHolder;
+    
+    MBProgressHUD *_hud;
 
 }
 @property (strong, nonatomic) NSIndexPath* editingIndexPath;  //当前左滑cell的index，在代理方法中设置
@@ -54,9 +56,13 @@ static CGFloat HeadViewHeight = 68;
 
     [self makeMsgTableView];
     [self makeMsgTableRequest];
-    [self readMessage];
     [self makeTablePlaceHolder];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [_msgArr removeAllObjects];
+    [self readMessage];
+}
+
 
 -(void) addClick{
     AddFriendViewController *view= [[AddFriendViewController alloc]init];
@@ -65,9 +71,9 @@ static CGFloat HeadViewHeight = 68;
 
 
 -(void) readMessage{
-//    _hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-//    _hud.mode = MBProgressHUDModeAnnularDeterminate;
-//    _hud.label.text = @"Reading...";
+    _hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    _hud.mode = MBProgressHUDModeAnnularDeterminate;
+    _hud.label.text = @"Reading...";
 //
 //    [list removeAllObjects];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -89,7 +95,7 @@ static CGFloat HeadViewHeight = 68;
     [manager POST:@"http://di.leizhenxd.com/api/user/getMyFriends" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"%@", jsonDict);
-//        _hud.hidden =YES;
+        _hud.hidden =YES;
         if([[jsonDict[@"responseCode"] stringValue] isEqualToString:@"0"]){
             NSDictionary * imDic = [jsonDict objectForKey:@"data"];
             [HomeMessageModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
@@ -101,7 +107,7 @@ static CGFloat HeadViewHeight = 68;
             [CXMProgressView showText:jsonDict[@"responseMsg"]];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        _hud.hidden =YES;
+        _hud.hidden =YES;
         NSLog(@"请求失败--%@",error);
     }];
 }
@@ -145,6 +151,7 @@ static CGFloat HeadViewHeight = 68;
     UIButton *add = [[UIButton alloc]init];
     [add setTitle:@"Add New" forState:UIControlStateNormal];
     add.titleLabel.font = [UIFont systemFontOfSize:12];
+    add.hidden = !self.isMainCall;
     [add sizeToFit];
     [add setTitleColor:UIColorFromRGB(0x4a72e2) forState:UIControlStateNormal];
     [add addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
@@ -487,7 +494,13 @@ static CGFloat HeadViewHeight = 68;
 //        detailVc.transferId = messageModel.transferId;
 //
 //        [self.navigationController pushViewController:detailVc animated:YES];
-        
+        if(!self.isMainCall){
+            if(self.friendBlock){
+                HomeMessageModel *model = [_msgArr objectAtIndex:indexPath.row];
+                self.friendBlock(model.ID);
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 //设置消息已读

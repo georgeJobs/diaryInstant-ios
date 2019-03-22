@@ -31,6 +31,18 @@
 		5E5CB99A22400715001DFEE6 /* Cell_delate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5CB99822400715001DFEE6 /* Cell_delate@2x.png */; };
 		5E5CB99D22400953001DFEE6 /* MyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB99C22400953001DFEE6 /* MyScrollView.m */; };
 		5E5CB9A0224009BF001DFEE6 /* TableViewPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB99F224009BF001DFEE6 /* TableViewPlaceholder.m */; };
+		5E5CB9A322413F06001DFEE6 /* SelectPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB9A222413F06001DFEE6 /* SelectPhotoController.m */; };
+		5E5CB9A8224141A5001DFEE6 /* Intelligent_noselected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5CB9A4224141A5001DFEE6 /* Intelligent_noselected@3x.png */; };
+		5E5CB9A9224141A5001DFEE6 /* Intelligent_noselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5CB9A5224141A5001DFEE6 /* Intelligent_noselected@2x.png */; };
+		5E5CB9AA224141A5001DFEE6 /* Intelligent_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5CB9A6224141A5001DFEE6 /* Intelligent_selected@2x.png */; };
+		5E5CB9AB224141A5001DFEE6 /* Intelligent_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5CB9A7224141A5001DFEE6 /* Intelligent_selected@3x.png */; };
+		5E5CB9AE2242128E001DFEE6 /* AddNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB9AD2242128E001DFEE6 /* AddNoteViewController.m */; };
+		5E5CB9B1224212A3001DFEE6 /* AddResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB9B0224212A3001DFEE6 /* AddResultViewController.m */; };
+		5E5CB9B422448806001DFEE6 /* ShareNoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB9B322448806001DFEE6 /* ShareNoteController.m */; };
+		5E5CB9B72244B400001DFEE6 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB9B62244B400001DFEE6 /* ProfileViewController.m */; };
+		5E5CB9BA2244B414001DFEE6 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5CB9B92244B414001DFEE6 /* SettingsViewController.m */; };
+		5E5CB9BD2244C5DC001DFEE6 /* Default_headImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5CB9BB2244C5DC001DFEE6 /* Default_headImage@2x.png */; };
+		5E5CB9BE2244C5DC001DFEE6 /* Default_headImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5CB9BC2244C5DC001DFEE6 /* Default_headImage@3x.png */; };
 		5ED18F80222ECB9700DEF433 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED18F7F222ECB9700DEF433 /* AppDelegate.m */; };
 		5ED18F83222ECB9700DEF433 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED18F82222ECB9700DEF433 /* ViewController.m */; };
 		5ED18F86222ECB9700DEF433 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ED18F84222ECB9700DEF433 /* Main.storyboard */; };
@@ -133,6 +145,24 @@
 		5E5CB99C22400953001DFEE6 /* MyScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScrollView.m; sourceTree = "<group>"; };
 		5E5CB99E224009BF001DFEE6 /* TableViewPlaceholder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewPlaceholder.h; sourceTree = "<group>"; };
 		5E5CB99F224009BF001DFEE6 /* TableViewPlaceholder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewPlaceholder.m; sourceTree = "<group>"; };
+		5E5CB9A122413F06001DFEE6 /* SelectPhotoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectPhotoController.h; sourceTree = "<group>"; };
+		5E5CB9A222413F06001DFEE6 /* SelectPhotoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectPhotoController.m; sourceTree = "<group>"; };
+		5E5CB9A4224141A5001DFEE6 /* Intelligent_noselected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Intelligent_noselected@3x.png"; sourceTree = "<group>"; };
+		5E5CB9A5224141A5001DFEE6 /* Intelligent_noselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Intelligent_noselected@2x.png"; sourceTree = "<group>"; };
+		5E5CB9A6224141A5001DFEE6 /* Intelligent_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Intelligent_selected@2x.png"; sourceTree = "<group>"; };
+		5E5CB9A7224141A5001DFEE6 /* Intelligent_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Intelligent_selected@3x.png"; sourceTree = "<group>"; };
+		5E5CB9AC2242128E001DFEE6 /* AddNoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddNoteViewController.h; sourceTree = "<group>"; };
+		5E5CB9AD2242128E001DFEE6 /* AddNoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddNoteViewController.m; sourceTree = "<group>"; };
+		5E5CB9AF224212A3001DFEE6 /* AddResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddResultViewController.h; sourceTree = "<group>"; };
+		5E5CB9B0224212A3001DFEE6 /* AddResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddResultViewController.m; sourceTree = "<group>"; };
+		5E5CB9B222448806001DFEE6 /* ShareNoteController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareNoteController.h; sourceTree = "<group>"; };
+		5E5CB9B322448806001DFEE6 /* ShareNoteController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareNoteController.m; sourceTree = "<group>"; };
+		5E5CB9B52244B400001DFEE6 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		5E5CB9B62244B400001DFEE6 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		5E5CB9B82244B414001DFEE6 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		5E5CB9B92244B414001DFEE6 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		5E5CB9BB2244C5DC001DFEE6 /* Default_headImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default_headImage@2x.png"; sourceTree = "<group>"; };
+		5E5CB9BC2244C5DC001DFEE6 /* Default_headImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default_headImage@3x.png"; sourceTree = "<group>"; };
 		5ED18F7B222ECB9700DEF433 /* DiaryInstant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryInstant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ED18F7E222ECB9700DEF433 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5ED18F7F222ECB9700DEF433 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -405,6 +435,8 @@
 				5E3C2522223A70C0000835FC /* UploadResultController.m */,
 				5E3C2524223A70E8000835FC /* ShareViewController.h */,
 				5E3C2525223A70E8000835FC /* ShareViewController.m */,
+				5E5CB9A122413F06001DFEE6 /* SelectPhotoController.h */,
+				5E5CB9A222413F06001DFEE6 /* SelectPhotoController.m */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -414,6 +446,12 @@
 			children = (
 				5ED190402237EFFA00DEF433 /* NoteViewController.h */,
 				5ED190412237EFFA00DEF433 /* NoteViewController.m */,
+				5E5CB9AC2242128E001DFEE6 /* AddNoteViewController.h */,
+				5E5CB9AD2242128E001DFEE6 /* AddNoteViewController.m */,
+				5E5CB9AF224212A3001DFEE6 /* AddResultViewController.h */,
+				5E5CB9B0224212A3001DFEE6 /* AddResultViewController.m */,
+				5E5CB9B222448806001DFEE6 /* ShareNoteController.h */,
+				5E5CB9B322448806001DFEE6 /* ShareNoteController.m */,
 			);
 			path = Note;
 			sourceTree = "<group>";
@@ -444,6 +482,10 @@
 			children = (
 				5ED190492237F03800DEF433 /* MoreViewController.h */,
 				5ED1904A2237F03800DEF433 /* MoreViewController.m */,
+				5E5CB9B52244B400001DFEE6 /* ProfileViewController.h */,
+				5E5CB9B62244B400001DFEE6 /* ProfileViewController.m */,
+				5E5CB9B82244B414001DFEE6 /* SettingsViewController.h */,
+				5E5CB9B92244B414001DFEE6 /* SettingsViewController.m */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -525,6 +567,12 @@
 		5ED1904C2237F26000DEF433 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5E5CB9BB2244C5DC001DFEE6 /* Default_headImage@2x.png */,
+				5E5CB9BC2244C5DC001DFEE6 /* Default_headImage@3x.png */,
+				5E5CB9A5224141A5001DFEE6 /* Intelligent_noselected@2x.png */,
+				5E5CB9A4224141A5001DFEE6 /* Intelligent_noselected@3x.png */,
+				5E5CB9A6224141A5001DFEE6 /* Intelligent_selected@2x.png */,
+				5E5CB9A7224141A5001DFEE6 /* Intelligent_selected@3x.png */,
 				5E5CB99822400715001DFEE6 /* Cell_delate@2x.png */,
 				5E5CB99722400715001DFEE6 /* Cell_delate@3x.png */,
 				5E3C252D223CC54F000835FC /* cameraBtn.png */,
@@ -647,6 +695,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E5CB9AB224141A5001DFEE6 /* Intelligent_selected@3x.png in Resources */,
 				5E3C252C223C9397000835FC /* add-pic.png in Resources */,
 				5ED190542237F78C00DEF433 /* history.png in Resources */,
 				5ED18F8B222ECB9800DEF433 /* LaunchScreen.storyboard in Resources */,
@@ -656,16 +705,21 @@
 				5E3C2530223CC550000835FC /* photoBtn.png in Resources */,
 				5ED18F88222ECB9800DEF433 /* Assets.xcassets in Resources */,
 				5E3C252F223CC550000835FC /* cameraBtn.png in Resources */,
+				5E5CB9AA224141A5001DFEE6 /* Intelligent_selected@2x.png in Resources */,
 				5ED190562237F78C00DEF433 /* note.png in Resources */,
+				5E5CB9A9224141A5001DFEE6 /* Intelligent_noselected@2x.png in Resources */,
 				5ED18F86222ECB9700DEF433 /* Main.storyboard in Resources */,
 				5ED190322231722700DEF433 /* progressView_success@2x.png in Resources */,
+				5E5CB9BE2244C5DC001DFEE6 /* Default_headImage@3x.png in Resources */,
 				5ED190552237F78C00DEF433 /* more.png in Resources */,
 				5E3C252A223C8BAE000835FC /* defaultPic@3x.png in Resources */,
+				5E5CB9BD2244C5DC001DFEE6 /* Default_headImage@2x.png in Resources */,
 				5E5CB99922400715001DFEE6 /* Cell_delate@3x.png in Resources */,
 				5ED190352231722700DEF433 /* progressView_error@3x.png in Resources */,
 				5ED190572237F78C00DEF433 /* friend.png in Resources */,
 				5E3C2529223C8BAE000835FC /* defaultPic@2x.png in Resources */,
 				5ED190532237F78C00DEF433 /* camera.png in Resources */,
+				5E5CB9A8224141A5001DFEE6 /* Intelligent_noselected@3x.png in Resources */,
 				5ED190342231722700DEF433 /* progressView_error@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -749,6 +803,7 @@
 				5ED190452237F00E00DEF433 /* FriendViewController.m in Sources */,
 				5ED190202231708C00DEF433 /* UIImage+FlatUI.m in Sources */,
 				5ED190332231722700DEF433 /* CXMProgressView.m in Sources */,
+				5E5CB9BA2244B414001DFEE6 /* SettingsViewController.m in Sources */,
 				5ED1901E2231708C00DEF433 /* NetworkDetector.m in Sources */,
 				5ED190392231737A00DEF433 /* NSDictionary+SetNullWithStr.m in Sources */,
 				5E5CB98C223D32D3001DFEE6 /* LBPhotoView.m in Sources */,
@@ -757,12 +812,14 @@
 				5E5CB983223CD91F001DFEE6 /* ForgotViewController.m in Sources */,
 				5E5CB98F223F8A7C001DFEE6 /* AddFriendViewController.m in Sources */,
 				5E5CB97D223CD807001DFEE6 /* RegisterViewController.m in Sources */,
+				5E5CB9B72244B400001DFEE6 /* ProfileViewController.m in Sources */,
 				5E5CB993224004D5001DFEE6 /* SystemMessageTableViewCell.m in Sources */,
 				5E3C2517223A1E00000835FC /* PicShowModel.m in Sources */,
 				5ED190232231708C00DEF433 /* UIImage+ThumbnailImage.m in Sources */,
 				5E3C251A223A54AB000835FC /* UploadViewController.m in Sources */,
 				5ED190272231708C00DEF433 /* LoginHttpManager.m in Sources */,
 				5ED190252231708C00DEF433 /* UIImage+Resize.m in Sources */,
+				5E5CB9B422448806001DFEE6 /* ShareNoteController.m in Sources */,
 				5ED190242231708C00DEF433 /* UIImage+RoundedCorner.m in Sources */,
 				5ED190262231708C00DEF433 /* ArticleHttpManager.m in Sources */,
 				5ED190482237F02100DEF433 /* HistoryViewController.m in Sources */,
@@ -772,8 +829,11 @@
 				5ED1903C2237EDD900DEF433 /* MainViewController.m in Sources */,
 				5E5CB98B223D32D3001DFEE6 /* LBPhotosBrowserViewController.m in Sources */,
 				5ED18F8E222ECB9800DEF433 /* main.m in Sources */,
+				5E5CB9B1224212A3001DFEE6 /* AddResultViewController.m in Sources */,
 				5ED18F80222ECB9700DEF433 /* AppDelegate.m in Sources */,
 				5ED18FC32231578B00DEF433 /* LoginViewController.m in Sources */,
+				5E5CB9AE2242128E001DFEE6 /* AddNoteViewController.m in Sources */,
+				5E5CB9A322413F06001DFEE6 /* SelectPhotoController.m in Sources */,
 				5E3C2526223A70E8000835FC /* ShareViewController.m in Sources */,
 				5E5CB9962240053B001DFEE6 /* HomeMessageModel.m in Sources */,
 				5ED190222231708C00DEF433 /* UIImage+PureColorImage.m in Sources */,
@@ -950,7 +1010,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3Q6F593792;
+				DEVELOPMENT_TEAM = 36LX5CT9CT;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DiaryInstant/DiaryInstant.pch";
 				INFOPLIST_FILE = DiaryInstant/Info.plist;
@@ -958,7 +1018,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.george.DiaryInstant1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.george.DiaryInstant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -970,7 +1030,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3Q6F593792;
+				DEVELOPMENT_TEAM = 36LX5CT9CT;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/DiaryInstant/DiaryInstant.pch";
 				INFOPLIST_FILE = DiaryInstant/Info.plist;
@@ -978,7 +1038,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.george.DiaryInstant1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.george.DiaryInstant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MessagePhotoController : UIViewController
-
+@property(nonatomic,assign) BOOL isPhoto;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,6 +7,8 @@
 //
 
 #import "MoreViewController.h"
+#import "ProfileViewController.h"
+#import "SettingsViewController.h"
 
 #define CELL_IDENTIFER  @"Cell_Identifer"
 static const NSInteger HeadViewHeight = 376/2;
@@ -145,31 +147,12 @@ static const NSInteger HeadViewHeight = 376/2;
         {
             
             if(indexPath.row==0){
+                ProfileViewController* view = [[ProfileViewController alloc]init];
+                [self.navigationController pushViewController:view animated:YES];
             }
-        }
-            break;
-        case 1:
-        {
-            
-            if(indexPath.row ==0){
-                
-            }else if (indexPath.row==1){
-                
-            }else{
-                
-            }
-        }
-            break;
-        case 2:
-        {
-            if(indexPath.row==0){
-                
-                
-            }else if (indexPath.row==1){
-                [CXMProgressView showText:@"程序猿正在努力开发中(｡ì _ í｡)"];
-                
-            }else{
-                
+            else if(indexPath.row==1){
+                SettingsViewController * view = [[SettingsViewController alloc]init];
+                [self.navigationController pushViewController:view animated:YES];
             }
         }
             break;

@@ -28,8 +28,9 @@
     self.view.backgroundColor = UIColor.whiteColor;
     
     _usrTextField = [[UITextField alloc]init];
+    _usrTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     _usrTextField.borderStyle = UITextBorderStyleBezel;
-    _usrTextField.text=@"lilei";
+    _usrTextField.text=@"george";
     [_usrTextField setPlaceholder:@"Username/Mobile Number"];
     
     [self.view addSubview:_usrTextField];
@@ -147,6 +148,8 @@
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSDictionary * imDic = [responseObject objectForKey:@"data"];
             [defaults setObject:imDic[@"token"] forKey:@"token"];
+            [defaults setObject:imDic[@"profileUrl"] forKey:@"profileUrl"];
+            [defaults setObject:imDic[@"name"] forKey:@"name"];
             [defaults synchronize];
             MainViewController *deviceViewController = [[MainViewController alloc] init];
             //deviceViewController.hidesBottomBarWhenPushed = YES;

@@ -12,6 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MPDeatailViewController : UIViewController
 
+@property(nonatomic,strong) NSString *content;
+@property(nonatomic,strong) NSString *userName;
+@property(nonatomic,strong) NSString *timeStamp;
+@property(nonatomic,strong) NSString *timeleft;
+@property(nonatomic,strong) NSString *topic;
+@property(nonatomic,assign) BOOL isPhoto;
+
 @end
 
 NS_ASSUME_NONNULL_END

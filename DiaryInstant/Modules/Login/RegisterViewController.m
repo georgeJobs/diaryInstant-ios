@@ -37,6 +37,7 @@
     }];
     
     _usrField = [[UITextField alloc]init];
+    _usrField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     _usrField.borderStyle = UITextBorderStyleBezel;
     //_usrField.delegate = self;
     _usrField.keyboardType = UIKeyboardTypeDefault;
@@ -85,6 +86,7 @@
     }];
     
     _emailField = [[UITextField alloc]init];
+    _emailField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     _emailField.borderStyle = UITextBorderStyleBezel;
     _emailField.delegate = self;
     _emailField.keyboardType = UIKeyboardTypeEmailAddress;
@@ -164,10 +166,6 @@
     [_emailField resignFirstResponder];
     if(!ValidStr(_usrField.text)||!ValidStr(_pwdField.text)||!ValidStr(_repwdField.text)||!ValidStr(_mobileField.text)||!ValidStr(_emailField.text)){
         [CXMProgressView showText:@"fill all data please"];
-        CompleteController *view = [[CompleteController alloc] init];
-        view.name =@"123";
-        //            //deviceViewController.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:view animated:YES];
         return;
     }
     if(![_pwdField.text isEqualToString:_repwdField.text]){

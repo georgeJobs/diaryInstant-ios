@@ -1,16 +1,16 @@
 //
-//  ShareViewController.m
+//  ShareNoteController.m
 //  DiaryInstant
 //
-//  Created by George on 2019/3/14.
+//  Created by George on 2019/3/22.
 //  Copyright © 2019 George. All rights reserved.
 //
 
-#import "ShareViewController.h"
-#import "SelectPhotoController.h"
+#import "ShareNoteController.h"
+#import "NoteViewController.h"
 #import "FriendViewController.h"
 
-@interface ShareViewController (){
+@interface ShareNoteController (){
     NSString *resourceId;
     NSString *friendId;
     UITextField *hourField;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation ShareViewController
+@implementation ShareNoteController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,7 +29,7 @@
     self.title = @"Share with Other";
     
     UILabel *label = [[UILabel alloc]init];
-    label.text = @"Choose Photo";
+    label.text = @"Choose Note";
     [label sizeToFit];
     label.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:label];
@@ -145,11 +145,11 @@
 }
 
 -(void) photoJump{
-    SelectPhotoController *view = [[SelectPhotoController alloc]init];
-    view.showPicBlock=^(NSString *imageId) {
-        self->resourceId= imageId;
-//        intelligentCell.imageUrl = model.content;
-//        NSDictionary *dic = @{[NSString stringWithFormat:@"%ld",indexPath.row]:@(indexRow)};
+    NoteViewController *view = [[NoteViewController alloc]init];
+    view.noteBlock=^(NSString *noteId) {
+        self->resourceId= noteId;
+        //        intelligentCell.imageUrl = model.content;
+        //        NSDictionary *dic = @{[NSString stringWithFormat:@"%ld",indexPath.row]:@(indexRow)};
     };
     [self.navigationController pushViewController:view animated:YES];
 }
@@ -177,14 +177,14 @@
     NSDate *localeDate = [nowDate  dateByAddingTimeInterval: interval];
     
     NSDictionary *dic=@{@"expireTime":[NSString stringWithFormat:@"%ld", (long)[localeDate timeIntervalSince1970]*1000]
-,@"resourceId":resourceId,@"toUserIds":@[friendId]};
+                        ,@"resourceId":resourceId,@"toUserIds":@[friendId]};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *token = [defaults objectForKey:@"token"];
-
+    
     [manager.requestSerializer setValue:token forHTTPHeaderField:@"token"];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",
                                                                               @"text/html",
@@ -193,7 +193,7 @@
                                                                               @"text/javascript",
                                                                               @"text/xml",
                                                                               @"image/*"]];
-
+    
     [manager POST:@"http://di.leizhenxd.com/api/share/share" parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"%@", jsonDict);

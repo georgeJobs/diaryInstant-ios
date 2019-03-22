@@ -27,10 +27,12 @@
     photo.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"PHOTO" image:[image1  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] selectedImage:[image1  imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
     
     NoteViewController *note= [[NoteViewController alloc]init];
+    note.isMainCall = YES;
     UIImage *image2 = [UIImage imageNamed:@"note.png" ];
     note.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"NOTE" image:[image2  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] selectedImage:[image2  imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
     
     FriendViewController *friend = [[FriendViewController alloc]init];
+    friend.isMainCall = YES;
     UIImage *image3 = [UIImage imageNamed:@"friend.png" ];
     friend.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"FRIEND" image:[image3  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] selectedImage:[image3  imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
     

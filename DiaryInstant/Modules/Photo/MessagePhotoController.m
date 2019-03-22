@@ -7,6 +7,7 @@
 //
 
 #import "MessagePhotoController.h"
+#import "MPDeatailViewController.h"
 
 #define CELL_IDENTIFER  @"Cell_Identifer"
 static const NSInteger HeadViewHeight = 376/2;
@@ -25,6 +26,7 @@ static const NSInteger HeadViewHeight = 376/2;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title=@"Message";
+    list = [[NSMutableArray alloc]initWithCapacity:0];
     [self makeTable];
     [self readMessage];
 }
@@ -117,12 +119,10 @@ static const NSInteger HeadViewHeight = 376/2;
     
     cell.separatorInset = UIEdgeInsetsMake(0, 20, 0, 0);
     
-    NSArray *oneArr = @[@"我要认证",@"个人信息",@"我的收入"];
-    
     if(indexPath.section ==0){
         
         UILabel *tisLabel = [UILabel new];
-        tisLabel.text = oneArr[indexPath.row];
+        tisLabel.text = [NSString stringWithFormat:@"From : %@/Time Period : %@",list[indexPath.row][@"fromUserName"],list[indexPath.row][@"expireTime"]];//oneArr[indexPath.row];
         tisLabel.textColor =UIColorFromRGB(0x333333);
         tisLabel.font = [UIFont systemFontOfSize:14];
         [cell.contentView addSubview:tisLabel];
@@ -144,33 +144,15 @@ static const NSInteger HeadViewHeight = 376/2;
         case 0:
         {
             
-            if(indexPath.row==0){
-            }
-        }
-            break;
-        case 1:
-        {
+            MPDeatailViewController *view = [[MPDeatailViewController alloc]init];
+            view.isPhoto = self.isPhoto;
+            view.content = list[indexPath.row][@"content"];
+            view.userName = list[indexPath.row][@"fromUserName"];
+            view.timeStamp = list[indexPath.row][@"expireTime"];
+            view.topic = list[indexPath.row][@"topic"];
+            view.timeleft =list[indexPath.row][@"expireTime"];
             
-            if(indexPath.row ==0){
-                
-            }else if (indexPath.row==1){
-                
-            }else{
-                
-            }
-        }
-            break;
-        case 2:
-        {
-            if(indexPath.row==0){
-                
-                
-            }else if (indexPath.row==1){
-                [CXMProgressView showText:@"程序猿正在努力开发中(｡ì _ í｡)"];
-                
-            }else{
-                
-            }
+            [self.navigationController pushViewController:view animated:YES];
         }
             break;
         default:
@@ -183,6 +165,8 @@ static const NSInteger HeadViewHeight = 376/2;
     _hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     _hud.mode = MBProgressHUDModeAnnularDeterminate;
     _hud.label.text = @"Reading...";
+    
+    [list removeAllObjects];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -199,14 +183,17 @@ static const NSInteger HeadViewHeight = 376/2;
                                                                               @"text/javascript",
                                                                               @"text/xml",
                                                                               @"image/*"]];
-    NSDictionary *dic = @{@"type":@1 };
+    NSDictionary *dic = @{@"type":self.isPhoto?@1:@2};
     [manager POST:@"http://di.leizhenxd.com/api/share/shareToMe" parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"%@", jsonDict);
         _hud.hidden =YES;
         if([[jsonDict[@"responseCode"] stringValue] isEqualToString:@"0"]){
             NSDictionary * imDic = [jsonDict objectForKey:@"data"];
-            
+            for (NSDictionary *dic in imDic){
+                [list addObject:dic];
+            }
+            [_tableView reloadData];
         }else{
             [CXMProgressView showText:jsonDict[@"responseMsg"]];
         }
